@@ -1,0 +1,112 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--  1. Constructor Based Injection (Constructor Argument Type)  -->
+    <bean id="productDAO"
+          class="dao.impl.ProductDAOImpl"/>
+    <bean id="daoServiceWithRef"
+          class="services.impl.DAOServiceImpl">
+        <constructor-arg ref="productDAO"/>
+    </bean>
+
+    <!--      new DAOServiceImpl(new ProductDAOImpl)  -->
+    <bean id="daoService"
+          class="services.impl.DAOServiceImpl">
+        <constructor-arg>
+            <bean class="dao.impl.ProductDAOImpl"/>
+        </constructor-arg>
+    </bean>
+
+    <!--  Constructor with two params  -->
+    <bean id="userDAO"
+          class="dao.impl.UserDAOImpl"/>
+
+    <bean id="daoServiceWithTwoArgs"
+          class="services.impl.DAOServiceImpl">
+        <constructor-arg ref="userDAO"/>
+        <constructor-arg>
+            <bean class="dao.impl.ProductDAOImpl"/>
+        </constructor-arg>
+    </bean>
+
+    <!--  Constructor with two params  -->
+    <bean id="daoServiceWithOrderChanged"
+          class="services.impl.DAOServiceImpl">
+        <constructor-arg>
+            <bean class="dao.impl.ProductDAOImpl"/>
+        </constructor-arg>
+        <constructor-arg ref="userDAO"/>
+    </bean>
+
+    <!-- 2. Factory Method Based Injection  -->
+    <bean id="factory"
+          class="factories.ServiceFactory"/>
+
+    <bean id="productDAOWithFactory"
+          class="dao.impl.ProductDAOImpl"/>
+
+    <bean id="userDAOWithFactory"
+          class="dao.impl.UserDAOImpl"/>
+
+    <bean name="daoServiceWithFactory"
+          factory-bean="factory"
+          factory-method="createDAOService">
+        <constructor-arg ref="productDAOWithFactory"/>
+    </bean>
+
+    <!--  With two params  -->
+    <bean name="daoServiceWith2Params"
+          factory-bean="factory"
+          factory-method="createDAOService">
+        <constructor-arg ref="userDAOWithFactory"/>
+        <constructor-arg ref="productDAOWithFactory"/>
+    </bean>
+
+    <!--  With two params changed order -->
+    <!--  No exception thrown  -->
+    <bean name="daoServiceWith2ParamsTest"
+          factory-bean="factory"
+          factory-method="createDAOService">
+        <constructor-arg ref="productDAOWithFactory"/>
+        <constructor-arg ref="userDAOWithFactory"/>
+    </bean>
+
+    <!--  3.Setter Based Injection  -->
+    <bean id="userDAORef"
+          class="dao.impl.UserDAOImpl"/>
+    <bean id="daoServiceWithSetterBased"
+          class="services.impl.DAOServiceImpl">
+        <property name="userDAO" ref="userDAORef"/>
+        <property name="productDAO">
+            <bean
+                    class="dao.impl.ProductDAOImpl"/>
+        </property>
+    </bean>
+
+    <!--  1. Constructor Based Injection (Constructor Argument Type)  -->
+    <!--  .BeanCurrentlyInCreationException:
+    Error creating bean with name 'userDAOWithCircular':
+    Requested bean is currently in creation:   -->
+<!--    <bean id="userDAOWithCircular"-->
+<!--          class="dao.impl.UserDAOImpl">-->
+<!--        <constructor-arg ref="productDAOWithCircular"/>-->
+<!--    </bean>-->
+<!--    <bean id="productDAOWithCircular"-->
+<!--          class="dao.impl.ProductDAOImpl">-->
+<!--        <constructor-arg ref="userDAOWithCircular"/>-->
+<!--    </bean>-->
+
+
+    <bean id="userDAOWithCircular"
+          class="dao.impl.UserDAOImpl">
+        <property name="productDAO" ref="productDAOWithCircular"/>
+    </bean>
+    <bean id="productDAOWithCircular"
+          class="dao.impl.ProductDAOImpl">
+        <property name="userDAO" ref="userDAOWithCircular"/>
+    </bean>
+</beans>

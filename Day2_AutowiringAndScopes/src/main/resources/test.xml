@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--  Throws exception  -->
+    <!--    <bean id="b" class="testCases.B"/>-->
+    <!--    <bean id="b" class="testCases.B"/>-->
+    <!--    <bean id="a" class="testCases.A"-->
+    <!--          scope="singleton"-->
+    <!--          autowire="byName"/>-->
+
+    <bean id="b" class="testCases.B"/>
+    <bean id="b2" class="testCases.B"/>
+    <bean id="a" class="testCases.A" scope="singleton"/>
+    <bean id="a2" class="testCases.A" scope="singleton"/>
+</beans>
+
