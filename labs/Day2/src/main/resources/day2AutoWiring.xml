@@ -1,0 +1,57 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- #   you can use attribute default-autowire="byName" in beans element
+    to specify the value of default autoWiring  -->
+
+    <!--  Singleton Scope   -->
+    <!--  id must match the bean properties productDAO -> productDAO and userDAO -> userDAO  -->
+    <!--  Setters for properties is a must to use autoWire byName  -->
+
+    <!-- # The autowire candidate attribute is designed to only affect type based autowiring.
+          It does not affect explicit references by name -->
+
+    <!--       <bean id="productDAO" class="day5.dao.impl.ProductDAOImpl" autowire-candidate="false"/>-->
+    <bean id="productDAO" class="day5.dao.impl.ProductDAOImpl"/>
+    <bean id="userDAO" class="day5.dao.impl.UserDAOImpl" primary="true"/>
+    <bean id="userDAO2" class="day5.dao.impl.UserDAOImpl"/>
+
+
+    <!-- AutoWiring 4.byType  -->
+    <!--  Match by reference type even if property names don't match  -->
+    <bean id="daoServiceByType"
+          class="day5.services.impl.DAOServiceImpl" autowire="byType"/>
+
+    <!--  Error  -->
+    <!--  Could not autowire.
+    There is more than one bean of 'UserDAO' type. Beans: userDAO2,userDAO. Properties: 'userDAO'   -->
+    <!--  So you cannot create two beans with the same type and different names while using byType  -->
+    <!--    <bean id="userDAO2" class="day5.dao.impl.UserDAOImpl"/>-->
+
+    <!--  to fix Error we use primary="true" to required bean-->
+
+    <!-- AutoWiring 1. no (Default case)  -->
+    <bean id="daoServiceByNo" class="day5.services.impl.DAOServiceImpl" autowire="no"/>
+
+    <!--  AutoWiring 2.default  -->
+    <!--  you can set which will be the default autowire (default-autowire) for this group of beans. -->
+    <bean id="daoServiceByDefault"
+          class="day5.services.impl.DAOServiceImpl" autowire="default"/>
+
+    <!-- AutoWiring 3.byName  -->
+    <!--  Match by property name  -->
+    <bean id="daoServiceByName" class="day5.services.impl.DAOServiceImpl" autowire="byName"/>
+
+    <!-- AutoWiring 5.byConstructor  -->
+    <!--  Autowiring by constructor is based on autowiring byType not by name  -->
+    <!--  Autowiring candidate affects it  -->
+    <bean id="daoServiceByConstructor"
+          class="day5.services.impl.DAOServiceImpl" autowire="constructor"/>
+
+    <!--  todo How to select only one arg of constructor  -->
+    <!--  cannot do that  -->
+    <!--  do it explicitly  -->
+</beans>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="user" class="day5.models.User">
+        <constructor-arg index="0" value="Ahmed"/>
+        <constructor-arg index="1" value="Ali"/>
+    </bean>
+
+    <bean id="parent" class="day5.models.ComplexObject">
+        <property name="adminEmails2">
+            <list>
+                <value>Hello World</value>
+                <ref bean="user"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="parentSet" class="day5.models.ComplexObject">
+        <property name="adminEmails3">
+            <set>
+                <value>Hello from set</value>
+                <ref bean="user"/>
+            </set>
+        </property>
+    </bean>
+
+    <bean id="parentMap" class="day5.models.ComplexObject">
+        <property name="adminEmails4">
+            <map>
+                <entry key="administrator" value="admin@.lol.com"/>
+                <entry key="support" value="support@lol.com"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="parentProps" class="day5.models.ComplexObject">
+        <property name="adminEmails5">
+            <props>
+                <prop key="administrator">adminProp@.lol.com</prop>
+                <prop key="support">supportProp@lol.com</prop>
+            </props>
+        </property>
+    </bean>
+
+</beans>

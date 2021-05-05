@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+
+    <bean id="accountDAO" class="iti.day5.dao.impl.AccountDAOImpl"/>
+    
+    <bean id="accountDAO2" class="iti.day5.dao.impl.AccountDAOImpl"/>
+    <bean id="accountDAO3" class="iti.day5.dao.impl.AccountDAOImpl2"/>
+
+    <bean id="accountService"
+          class="iti.day5.services.impl.AccountServiceImpl">
+    </bean>
+
+
+<!--        why cerate only userDao-->
+<!--    <bean id="productDao" class="iti.day5.dao.impl.ProductDAOImpl"/>-->
+<!--    <bean id="userDao" class="iti.day5.dao.impl.UserDAOImpl"/>-->
+
+<!--    <bean id="daoService" class="iti.day5.services.impl.DAOServiceImpl"/>-->
+
+
+    <bean id="account1" class="iti.day5.models.impl.AccountImpl1">
+        <qualifier type="iti.qualifiers.DAOQualifier">
+            <attribute key="name" value="ahmed"/>
+            <attribute key="mobile" value="Vodafone"/>
+        </qualifier>
+    </bean>
+
+    <bean id="account2" class="iti.day5.models.impl.AccountImpl2">
+        <qualifier type="iti.qualifiers.DAOQualifier">
+            <attribute key="name" value="Mohamed"/>
+            <attribute key="mobile" value="Orange"/>
+        </qualifier>
+    </bean>
+
+    <bean id="account3" class="iti.day5.models.impl.AccountImpl3">
+        <qualifier type="iti.qualifiers.DAOQualifier">
+            <attribute key="name" value="Ali"/>
+            <attribute key="mobile" value="Etisalat"/>
+        </qualifier>
+    </bean>
+
+</beans>

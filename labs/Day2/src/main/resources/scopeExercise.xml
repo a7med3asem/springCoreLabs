@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd" >
+
+<!--   we can use attribute default-lazy-init="true" in beans element-->
+
+    <!--  scope="singleton" by default  -->
+    <bean id="productDAO" class="day5.dao.impl.ProductDAOImpl" scope="singleton"/>
+    <bean id="userDAO" class="day5.dao.impl.UserDAOImpl" scope="singleton"/>
+
+    <!--  lazy-init="false" initialize even if default-lazy-init="true"  -->
+<!--    <bean id="userDAO" class="day5.dao.impl.UserDAOImpl" scope="singleton" lazy-init="false"/>-->
+
+    <!--  Prototype scope  -->
+    <!--  Creates instance per request  -->
+<!--        <bean id="productDAO" class="day5.dao.impl.ProductDAOImpl" scope="prototype"/>-->
+<!--        <bean id="userDAO" class="day5.dao.impl.UserDAOImpl" scope="prototype"/>-->
+
+    <bean id="daoServiceByConstructor"
+          class="day5.services.impl.DAOServiceImpl" autowire="constructor"/>
+
+    <bean id="daoServiceByConstructor2"
+          class="day5.services.impl.DAOServiceImpl" autowire="constructor"/>
+
+</beans>

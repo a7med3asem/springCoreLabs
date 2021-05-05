@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="user" class="day5.models.User">
+        <constructor-arg index="1" value="Galal"/>
+        <constructor-arg value="Ahmed"/>
+    </bean>
+
+    <bean id="parent" abstract="true" class="day5.models.ComplexObject">
+        <property name="adminEmails2">
+            <list>
+                <value>Hello from parent</value>
+                <ref bean="user"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="child" parent="parent">
+        <property name="adminEmails2">
+            <list merge="true">
+                <value>Hello from child</value>
+                <ref bean="user"/>
+            </list>
+        </property>
+    </bean>
+
+</beans>

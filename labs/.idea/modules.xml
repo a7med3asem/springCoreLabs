@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BeanPostProcessorInterfaceTest/BeanPostProcessorInterfaceTest.iml" filepath="$PROJECT_DIR$/BeanPostProcessorInterfaceTest/BeanPostProcessorInterfaceTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Day1GettingStarted/Day1_GettingStarted.iml" filepath="$PROJECT_DIR$/Day1GettingStarted/Day1_GettingStarted.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Day2/Day2.iml" filepath="$PROJECT_DIR$/Day2/Day2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Day3Annotations/Day3Annotations.iml" filepath="$PROJECT_DIR$/Day3Annotations/Day3Annotations.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Day4StereoTypes/Day4StereoTypes.iml" filepath="$PROJECT_DIR$/Day4StereoTypes/Day4StereoTypes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Day5/Day5.iml" filepath="$PROJECT_DIR$/Day5/Day5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Practice-PluralsightFundamentals/Practice-PluralsightFundamentals.iml" filepath="$PROJECT_DIR$/Practice-PluralsightFundamentals/Practice-PluralsightFundamentals.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-labs.iml" filepath="$PROJECT_DIR$/spring-labs.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,100 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--  Default Constructor  -->
+    <bean id="service1"
+          class="day5.services.impl.Service1Impl"/>
+
+    <!--  Constructor with int  -->
+    <bean id="service2"
+          class="day5.services.impl.Service1Impl">
+        <constructor-arg value="20" type="int"/>
+    </bean>
+
+    <!--  Constructor with String  -->
+    <bean id="service3"
+          class="day5.services.impl.Service1Impl">
+        <constructor-arg value="Name here"/>
+    </bean>
+
+    <!--  Constructor with two params  -->
+    <bean id="service4"
+          class="day5.services.impl.Service1Impl">
+        <constructor-arg value="Name here"/>
+        <constructor-arg value="25" type="int"/>
+    </bean>
+
+    <!--    Could not convert argument value of type [java.lang.String] to required type [int]:
+    Failed to convert value of type 'java.lang.String' to required type 'int';-->
+    <!-- Throws exception -->
+    <bean id="service4OrderTest"
+          class="day5.services.impl.Service1Impl">
+        <constructor-arg value="OrderTest" type="java.lang.String"/>
+        <!--        <constructor-arg value="25"/>-->
+        <!--   To prevent exception we wrote type="int"     -->
+        <!--        <constructor-arg value="OrderTest" type="java.lang.String"/>-->
+        <!--    OR    -->
+        <constructor-arg value="25" type="int"/>
+    </bean>
+
+    <!--  Test index attribute  -->
+    <bean id="service4Index"
+          class="day5.services.impl.Service1Impl">
+        <constructor-arg value="OrderTestIndex" index="1"/>
+        <constructor-arg value="25" index="0"/>
+    </bean>
+
+    <!--  Test index attribute  -->
+    <bean id="service4OneIndex"
+          class="day5.services.impl.Service1Impl">
+        <constructor-arg value="OneIndex" index="1"/>
+        <constructor-arg value="25"/>
+    </bean>
+
+    <bean id="serviceOrderTest"
+          class="day5.services.impl.Service1Impl">
+        <!--        <constructor-arg value="25" type="int"/>-->
+        <constructor-arg value="25"/>
+        <constructor-arg value="Name here"/>
+    </bean>
+
+    <bean id="service5"
+          class="day5.services.impl.Service1Impl"
+          factory-method="createService1Impl"/>
+
+    <bean id="service6"
+          class="day5.services.impl.Service1Impl"
+          factory-method="createService1Impl">
+        <constructor-arg value="25" type="int"/>
+    </bean>
+
+    <bean id="service7"
+          class="day5.services.impl.Service1Impl"
+          factory-method="createService1Impl">
+        <constructor-arg value="25" type="int"/>
+        <constructor-arg value="Name here"/>
+    </bean>
+
+    <bean id="factory"
+          class="day5.factories.ServiceFactory">
+    </bean>
+
+    <bean id="service8"
+          factory-bean="factory"
+          factory-method="createService1Impl">
+    </bean>
+
+    <bean id="service9"
+          factory-bean="factory"
+          factory-method="createService1Impl">
+        <constructor-arg value="30" type="int"/>
+    </bean>
+
+    <bean id="calculatorID"
+          class="day5.dao.impl.CalculatorImpl">
+    </bean>
+</beans>
